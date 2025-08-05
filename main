@@ -1,7 +1,6 @@
-echo "# Firebase" >> README.md
 git init
-git add README.md
-git commit -m "first commit"
+git add .
+git commit -m "Initial project upload"
 git branch -M main
 git remote add origin https://github.com/LankfordCapital/Firebase.git
 git push -u origin main
