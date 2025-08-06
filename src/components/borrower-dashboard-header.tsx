@@ -1,1 +1,1 @@
-port default function BorrowerDashboardHeader() { return null; }
+export default function BorrowerDashboardHeader() { return null; }
