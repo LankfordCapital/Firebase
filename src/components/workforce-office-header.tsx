@@ -1,1 +1,4 @@
-export default function WorkforceOfficeHeader() { return null; }
+export function WorkforceOfficeHeader() {
+  return null;
+}
+export default WorkforceOfficeHeader;
