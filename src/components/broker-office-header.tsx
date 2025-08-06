@@ -1,1 +1,4 @@
-export default function BrokerOfficeHeader() { return null; }
+export function BrokerOfficeHeader() {
+  return null;
+}
+export default BrokerOfficeHeader;
