@@ -1,4 +1,3 @@
-
 'use client'
 
 import { usePathname } from 'next/navigation';
@@ -32,7 +31,7 @@ const footerLinks = [
     }
 ]
 
-export default function Footer() {
+function Footer() {
   const pathname = usePathname();
 
   const noFooterPaths = [
@@ -88,3 +87,6 @@ export default function Footer() {
     </footer>
   );
 }
+
+export default Footer;
+export { Footer };
