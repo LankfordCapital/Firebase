@@ -1,6 +1,6 @@
 'use client';
 
-import { createContext, useContext, useState, useCallback, useEffect } from 'react';
+import { createContext, useContext, useState, useCallback } from 'react';
 
 export type ToastVariant = 'success' | 'error' | 'info' | 'warning';
 
@@ -26,12 +26,16 @@ const ToastContext = createContext<ToastContextType | undefined>(undefined);
 export const useToast = (): ToastContextType => {
   const context = useContext(ToastContext);
   if (!context) {
-    throw new Error('useToast must be used within a ToastProvider');
+    throw new Error('useToast must be used within a ToastContextProvider');
   }
   return context;
 };
 
-export const ToastContextProvider = ({ children }: { children: React.ReactNode }) => {
+export const ToastContextProvider = ({
+  children,
+}: {
+  children: React.ReactNode;
+}) => {
   const [toasts, setToasts] = useState<ToastType[]>([]);
 
   const toast = useCallback((toastData: Omit<ToastType, 'id'>) => {
