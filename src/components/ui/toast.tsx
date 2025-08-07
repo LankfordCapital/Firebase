@@ -47,4 +47,5 @@ const Toast: React.FC<ToastProps> = ({ message, type = "info" }) => {
   );
 };
 
-export default Toast;
+export { ToastProvider, Toast, ToastTitle, ToastDescription, ToastClose, ToastViewport } from "wherever-they-are-defined";
+
