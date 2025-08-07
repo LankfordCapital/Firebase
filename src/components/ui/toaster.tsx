@@ -1,35 +1,64 @@
-"use client"
+'use client';
 
-import { useToast } from "@/hooks/use-toast"
-import {
-  Toast,
-  ToastClose,
-  ToastDescription,
-  ToastProvider,
-  ToastTitle,
-  ToastViewport,
-} from "./toast"
+import { useState } from 'react';
+import Toast from './toast';
+import ToastClose from './toast-close';
+import ToastDescription from './toast-description';
+import ToastProvider from './toast-provider';
+import ToastTitle from './toast-title';
+import ToastViewport from './toast-viewport';
 
-export function Toaster() {
-  const { toasts } = useToast()
+interface ToastData {
+  id: number;
+  title: string;
+  description: string;
+}
+
+const Toaster = () => {
+  const [toasts, setToasts] = useState<ToastData[]>([]);
+
+  const showToast = () => {
+    const id = Date.now();
+    setToasts(prev => [
+      ...prev,
+      {
+        id,
+        title: 'Success!',
+        description: 'You have successfully triggered a toast.',
+      },
+    ]);
+    setTimeout(() => {
+      setToasts(prev => prev.filter(t => t.id !== id));
+    }, 4000);
+  };
+
+  const closeToast = (id: number) => {
+    setToasts(prev => prev.filter(t => t.id !== id));
+  };
 
   return (
-    <ToastProvider>
-      {toasts.map(function ({ id, title, description, action, ...props }) {
-        return (
-          <Toast key={id} {...props}>
-            <div className="grid gap-1">
-              {title && <ToastTitle>{title}</ToastTitle>}
-              {description && (
-                <ToastDescription>{description}</ToastDescription>
-              )}
+    <>
+      <button
+        onClick={showToast}
+        className="px-4 py-2 bg-indigo-600 text-white rounded-md hover:bg-indigo-700"
+      >
+        Show Toast
+      </button>
+
+      <ToastProvider>
+        {toasts.map((toast) => (
+          <Toast key={toast.id}>
+            <div>
+              <ToastTitle>{toast.title}</ToastTitle>
+              <ToastDescription>{toast.description}</ToastDescription>
             </div>
-            {action}
-            <ToastClose />
+            <ToastClose onClick={() => closeToast(toast.id)} />
           </Toast>
-        )
-      })}
-      <ToastViewport />
-    </ToastProvider>
-  )
-}
+        ))}
+        <ToastViewport />
+      </ToastProvider>
+    </>
+  );
+};
+
+export default Toaster;
