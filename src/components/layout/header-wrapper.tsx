@@ -16,8 +16,11 @@ export default function HeaderWrapper() {
   if (pathname.startsWith('/broker-office')) {
     return <BrokerOfficeHeader />;
   }
-  
-  if (pathname.startsWith('/workforce-office') || pathname.startsWith('/auth/admin-signup')) {
+
+  if (
+    pathname.startsWith('/workforce-office') ||
+    pathname.startsWith('/auth/admin-signup')
+  ) {
     return <WorkforceOfficeHeader />;
   }
 
