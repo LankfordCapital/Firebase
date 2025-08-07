@@ -1,63 +1,43 @@
 'use client';
 
-import { useState } from 'react';
-import Toast from './toast';
-import ToastClose from './toast-close';
-import ToastDescription from './toast-description';
-import ToastProvider from './toast-provider';
-import ToastTitle from './toast-title';
-import ToastViewport from './toast-viewport';
-
-interface ToastData {
-  id: number;
-  title: string;
-  description: string;
-}
+import * as React from 'react';
+import { useToast } from '@/hooks/use-toast';
+import Toast from '@/components/ui/toast';
+import ToastClose from '@/components/ui/toast-close';
+import ToastDescription from '@/components/ui/toast-description';
+import ToastProvider from '@/components/ui/toast-provider';
+import ToastTitle from '@/components/ui/toast-title';
+import ToastViewport from '@/components/ui/toast-viewport';
 
 const Toaster = () => {
-  const [toasts, setToasts] = useState<ToastData[]>([]);
-
-  const showToast = () => {
-    const id = Date.now();
-    setToasts(prev => [
-      ...prev,
-      {
-        id,
-        title: 'Success!',
-        description: 'You have successfully triggered a toast.',
-      },
-    ]);
-    setTimeout(() => {
-      setToasts(prev => prev.filter(t => t.id !== id));
-    }, 4000);
-  };
-
-  const closeToast = (id: number) => {
-    setToasts(prev => prev.filter(t => t.id !== id));
-  };
+  const { toasts } = useToast();
 
   return (
-    <>
-      <button
-        onClick={showToast}
-        className="px-4 py-2 bg-indigo-600 text-white rounded-md hover:bg-indigo-700"
-      >
-        Show Toast
-      </button>
+    <ToastProvider>
+      {toasts.map((toast) => {
+        const { id, title, description, action, variant, onClose, icon, duration } = toast;
 
-      <ToastProvider>
-        {toasts.map((toast) => (
-          <Toast key={toast.id}>
-            <div>
-              <ToastTitle>{toast.title}</ToastTitle>
-              <ToastDescription>{toast.description}</ToastDescription>
+        return (
+          <Toast
+            key={id}
+            title={title}
+            description={description}
+            variant={variant}
+            icon={icon}
+            onClose={onClose}
+            duration={duration}
+          >
+            <div className="flex flex-col gap-1 pr-2">
+              {title && <ToastTitle>{title}</ToastTitle>}
+              {description && <ToastDescription>{description}</ToastDescription>}
             </div>
-            <ToastClose onClick={() => closeToast(toast.id)} />
+            {action}
+            <ToastClose />
           </Toast>
-        ))}
-        <ToastViewport />
-      </ToastProvider>
-    </>
+        );
+      })}
+      <ToastViewport />
+    </ToastProvider>
   );
 };
 
