@@ -10,14 +10,8 @@ import {
   ToastViewport,
 } from "./toast"
 
-export {
-  ToastProvider,
-  Toast,
-  ToastTitle,
-  ToastDescription,
-  ToastClose,
-  ToastViewport,
-};
+export function Toaster() {
+  const { toasts } = useToast()
 
   return (
     <ToastProvider>
