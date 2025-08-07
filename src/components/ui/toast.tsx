@@ -113,3 +113,15 @@ export {
   ToastAction,
   toastVariants,
 }
+
+// TEMP DEBUG - REMOVE AFTER RUNNING
+console.log("Exports from toast.tsx:", {
+  ToastProvider,
+  Toast,
+  ToastViewport,
+  ToastTitle,
+  ToastDescription,
+  ToastClose,
+  ToastAction,
+  toastVariants,
+});
