@@ -1,4 +1,11 @@
-import React from "react";
+import {
+  ToastProvider,
+  Toast,
+  ToastTitle,
+  ToastDescription,
+  ToastClose,
+  ToastViewport,
+} from "@/components/ui/toast";
 
 type ToastProps = {
   message: string;
@@ -49,3 +56,4 @@ const Toast: React.FC<ToastProps> = ({ message, type = "info" }) => {
 
 export default Toast;
 export { Toast };
+
