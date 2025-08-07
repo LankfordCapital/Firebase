@@ -2,11 +2,13 @@ import type { Metadata } from 'next';
 import { Inter, Space_Grotesk } from 'next/font/google';
 import './globals.css';
 import { cn } from '@/lib/utils';
-import { ToastContextProvider } from '@/hooks/use-toast';
-import { Toaster } from '@/components/ui/toaster'; // <-- named import
-import { Providers } from '@/components/providers';
-import HeaderWrapper from '@/components/layout/header-wrapper';
-import Footer from '@/components/layout/footer';
+
+import { ToastContextProvider } from '@/hooks/use-toast';      // named export
+import { Toaster } from '@/components/ui/toaster';             // named export
+import { Providers } from '@/components/providers';            // named export
+
+import HeaderWrapper from '@/components/layout/header-wrapper'; // default export
+import Footer from '@/components/layout/footer';                // default export
 
 const fontBody = Inter({ subsets: ['latin'], variable: '--font-body' });
 const fontHeadline = Space_Grotesk({ subsets: ['latin'], variable: '--font-headline' });
