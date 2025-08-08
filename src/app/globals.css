@@ -37,7 +37,12 @@
     --sidebar-accent-foreground: 218 39% 30%;
     --sidebar-border: 214 32% 91%;
     --sidebar-ring: 218 39% 30%;
+
+    /* Note: do NOT define --font-body or --font-headline here.
+       next/font will set those via className on <html>/<body>.
+       We'll reference them with fallbacks below. */
   }
+
   .dark {
     --background: 222 47% 11%;
     --foreground: 210 40% 98%;
@@ -72,14 +77,28 @@
     --sidebar-border: 217 33% 17%;
     --sidebar-ring: 218 39% 45%;
   }
-}
 
-@layer base {
+  html,
+  body {
+    height: 100%;
+  }
+
   * {
     @apply border-border;
   }
+
   body {
+    margin: 0;
     @apply bg-background text-foreground;
+
+    /* Use next/font variables if present, otherwise fallback to system stack */
+    font-family: var(--font-body, ui-sans-serif), system-ui, -apple-system, Segoe UI,
+      Roboto, Helvetica, Arial, "Apple Color Emoji", "Segoe UI Emoji";
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-headline, ui-sans-serif), system-ui, -apple-system, Segoe UI,
+      Roboto, Helvetica, Arial, "Apple Color Emoji", "Segoe UI Emoji";
   }
 }
 
