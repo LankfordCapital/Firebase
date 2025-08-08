@@ -1,7 +1,10 @@
+// src/app/page.tsx
+
 export default function Page() {
   return (
-    <main>
-      <h1>Hello world</h1>
+    <main className="p-6">
+      <h1 className="text-2xl font-bold">Hello from the isolated root</h1>
+      <p>If you can see this without errors, your minimal App Router is working.</p>
     </main>
   );
 }
