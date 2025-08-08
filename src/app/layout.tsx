@@ -1,17 +1,12 @@
 export const metadata = {
   title: 'Test',
-  description: 'Stripped-down layout to debug font/cn issues',
+  description: 'Debug layout',
 };
 
-export default function RootLayout({
-  children,
-}: {
-  children: React.ReactNode;
-}) {
-  // IMPORTANT: No font imports, no cn usage — this is only for debugging
+export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="en" className="h-full">
-      <body className="min-h-screen antialiased">
+    <html lang="en">
+      <body>
         {children}
       </body>
     </html>
