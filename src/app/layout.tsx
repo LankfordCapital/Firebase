@@ -1,31 +1,19 @@
-import type { Metadata } from 'next';
-import { Inter, Space_Grotesk } from 'next/font/google';
-import './globals.css';
-import { cn } from '@/lib/utils';
-
-import { ToastContextProvider } from '@/hooks/use-toast'; // assumed named export
-import Toaster from '@/components/ui/toaster';            // ✅ default export confirmed
-import { Providers } from '@/components/providers';       // assumed named export
-
-import HeaderWrapper from '@/components/layout/header-wrapper'; // assumed default export
-import Footer from '@/components/layout/footer';                // assumed default export
-
-const fontBody = Inter({ subsets: ['latin'], variable: '--font-body' });
-const fontHeadline = Space_Grotesk({ subsets: ['latin'], variable: '--font-headline' });
-
-export const metadata: Metadata = {
-  title: 'Lankford Capital – Your Partner in Financial Growth',
-  description:
-    'Lankford Capital offers a wide range of loan products including residential, commercial, and industrial loans.',
+export const metadata = {
+  title: 'Test',
+  description: 'Stripped-down layout to debug font/cn',
 };
 
-export default function RootLayout({ children }: { children: React.ReactNode }) {
+export default function RootLayout({
+  children,
+}: {
+  children: React.ReactNode;
+}) {
+  // NOTE: No font imports, no cn usage
   return (
-    <html lang="en" className={cn(fontBody.variable, fontHeadline.variable, 'h-full')}>
-      <body>
-        <main>{children}</main>
+    <html lang="en" className="h-full">
+      <body className="min-h-screen antialiased">
+        {children}
       </body>
-
     </html>
   );
 }
