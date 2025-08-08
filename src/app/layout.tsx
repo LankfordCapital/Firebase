@@ -22,16 +22,10 @@ export const metadata: Metadata = {
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="en" className={cn(fontBody.variable, fontHeadline.variable, 'h-full')}>
-      <body className="font-body antialiased flex flex-col h-full">
-        <Providers>
-          <ToastContextProvider>
-            <HeaderWrapper />
-            <main className="flex-grow">{children}</main>
-            <Footer />
-            <Toaster />
-          </ToastContextProvider>
-        </Providers>
+      <body>
+        <main>{children}</main>
       </body>
+
     </html>
   );
 }
