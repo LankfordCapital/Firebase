@@ -15,7 +15,16 @@ const Toaster = () => {
   return (
     <ToastProvider>
       {toasts.map((toast) => {
-        const { id, title, description, action, variant, onClose, icon, duration } = toast;
+        const {
+          id,
+          title,
+          description,
+          action,
+          variant,
+          onClose,
+          icon,
+          duration,
+        } = toast;
 
         return (
           <Toast
